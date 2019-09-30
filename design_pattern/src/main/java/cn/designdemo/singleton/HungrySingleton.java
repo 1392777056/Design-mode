@@ -1,6 +1,8 @@
 package cn.designdemo.singleton;
 
-public class HungrySingleton {
+import java.io.Serializable;
+
+public class HungrySingleton implements Serializable {
 
     private final static HungrySingleton HUNGRY_SINGLETON;
     //private final static HungrySingleton HUNGRY_SINGLETON = new HungrySingleton();
@@ -12,6 +14,10 @@ public class HungrySingleton {
     private HungrySingleton(){}
 
     public static HungrySingleton getInstance(){
+        return HUNGRY_SINGLETON;
+    }
+
+    public Object readResolve(){
         return HUNGRY_SINGLETON;
     }
 
