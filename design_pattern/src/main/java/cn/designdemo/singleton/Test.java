@@ -11,8 +11,25 @@ public class Test {
 
         //LazySingleton lazySingleton = LazySingleton.getInstance();
 
-        //容器的单例
+        //空间换时间的理念。
         Thread t1 = new Thread(new Runnable() {
+            public void run() {
+                ThreadLoaclSingleton singleton = ThreadLoaclSingleton.getInstance();
+                System.out.println(Thread.currentThread().getName()+"--"+singleton);
+            }
+        });
+        Thread t2 = new Thread(new Runnable() {
+            public void run() {
+                ThreadLoaclSingleton singleton = ThreadLoaclSingleton.getInstance();
+                System.out.println(Thread.currentThread().getName()+"--"+singleton);
+            }
+        });
+        t1.start();
+        t2.start();
+        System.out.println("end...");
+
+        //容器的单例
+        /*Thread t1 = new Thread(new Runnable() {
             public void run() {
                 ContainerSingleton.putInstance("object",new Object());
                 Object instance = ContainerSingleton.getInstance("object");
@@ -28,7 +45,7 @@ public class Test {
         });
         t1.start();
         t2.start();
-        System.out.println("end...");
+        System.out.println("end...");*/
 
         //枚举
         /*EnumSingleton instance = EnumSingleton.getInstance();
