@@ -11,9 +11,28 @@ public class Test {
 
         //LazySingleton lazySingleton = LazySingleton.getInstance();
 
+        //容器的单例
+        Thread t1 = new Thread(new Runnable() {
+            public void run() {
+                ContainerSingleton.putInstance("object",new Object());
+                Object instance = ContainerSingleton.getInstance("object");
+                System.out.println(Thread.currentThread().getName()+"--"+instance);
+            }
+        });
+        Thread t2 = new Thread(new Runnable() {
+            public void run() {
+                ContainerSingleton.putInstance("object",new Object());
+                Object instance = ContainerSingleton.getInstance("object");
+                System.out.println(Thread.currentThread().getName()+"--"+instance);
+            }
+        });
+        t1.start();
+        t2.start();
+        System.out.println("end...");
+
         //枚举
-        EnumSingleton instance = EnumSingleton.getInstance();
-        instance.printTest();
+        /*EnumSingleton instance = EnumSingleton.getInstance();
+        instance.printTest();*/
         /*EnumSingleton instance = EnumSingleton.getInstance();
 
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("enumsingleton"));
