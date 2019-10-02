@@ -10,7 +10,9 @@ public class StaticInncSingleton {
     }
 
     private StaticInncSingleton(){
-
+        if (InnerClass.staticInncSingleton != null){
+            throw new RuntimeException("单例构造器禁止反射调用");
+        }
     }
 
     public static StaticInncSingleton getInstance(){
